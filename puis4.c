@@ -26,7 +26,7 @@ int main(void) // Boucle principale
       printf("\n");
       for(c=0;c<NBC;c++){
 	tab[l][c] = '.';
-	printf("%s",tab);
+	printf("%.1s",tab);
       }
     }
     printf("\n");
