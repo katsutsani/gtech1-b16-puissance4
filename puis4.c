@@ -1,13 +1,30 @@
 #include <stdio.h>
+#define NBL 6
+#define NBC 7
 
-int main(void){
-  int tab[7][6];
+// Variables globales:
+char tab[NBL][NBC]; // OK pour le compilateur car *tout est déterminé* au moment de compiler
+int joueur;         // Joueur 1: =joueur = 0;= et Joueur 1: =joueur = 1;=
+
+
+
+int init(void)
+{
+  // Texte de bienvenue
+
+  printf("Bienvenue");
+}
+
+
+int main(void) // Boucle principale
+{
+  // Initialisation de la table du jeu
   int table(void){
-    int nbl=6, nbc=7;
     int l,c;
-    for(l=0;l<nbl;l++){
+    // Affichage du plateau
+    for(l=0;l<NBL;l++){
       printf("\n");
-      for(c=0;c<nbc;c++){
+      for(c=0;c<NBC;c++){
 	tab[l][c] = '.';
 	printf("%s",tab);
       }
@@ -18,3 +35,13 @@ int main(void){
   table();
   return 0;
 }
+
+// Affichage invité (prompteur) pour le joueur courant
+
+// Saisie du numéro de colonne joué par le joueur courant
+
+// Actualisation de la table du jeu
+
+// [ Optionel: Test du vainqueur ]
+
+// Changement de joueur (c'est le tour de l'autre joueur)
