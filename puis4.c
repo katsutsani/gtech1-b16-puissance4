@@ -7,6 +7,8 @@
 char tab[NBL][NBC]; // OK pour le compilateur car *tout est déterminé* au moment de compiler
 int joueur; // Joueur 1: =joueur = 0;= et Joueur 1: =joueur = 1;=
 int l,c;
+char res = 'Y';
+int start_game = 1;
 
 // INITIALISATION
 
@@ -19,8 +21,11 @@ int init(void)
 
 int main(void)
 {
-  printf("Welcome to the game of the POWER 4\n\nStart Game[OK]"); // Texte de bienvenue
-printf(")
+  printf("Welcome to the game of the POWER 4\n\nStart Game ?\n\n[Y] -) Yes\n[N] -) No"); // Texte de bienvenue + condition de start
+  res = scanf("%c");
+  if (res == 1)
+  ("");
+  else
   return 0;
 
   // Initialisation de la table du jeu
