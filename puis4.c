@@ -1,24 +1,26 @@
 #include <stdio.h>
+#include <time.h>
 #define NBL 6
 #define NBC 7
 
 // Déclaration variables globales:
 char tab[NBL][NBC]; // OK pour le compilateur car *tout est déterminé* au moment de compiler
-int joueur;         // Joueur 1: =joueur = 0;= et Joueur 1: =joueur = 1;=
+int joueur; // Joueur 1: =joueur = 0;= et Joueur 1: =joueur = 1;=
+int l,c;
 
 // INITIALISATION
 
 int init(void)
 {
-
+ 
 }
 
 // BOUCLE PRINCIPALE
 
 int main(void)
 {
-  // Texte de bienvenue
-  printf("Bienvenue au jeu du PUISSANCE 4\n");
+  printf("Welcome to the game of the POWER 4\n\nStart Game[OK]"); // Texte de bienvenue
+printf(")
   return 0;
 
   // Initialisation de la table du jeu
