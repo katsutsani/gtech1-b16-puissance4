@@ -10,12 +10,6 @@ int joueur;         // Joueur 1: =joueur = 0;= et Joueur 1: =joueur = 1;=
 
 int init(void)
 {
-  {
-  // Texte de bienvenue
-
-  printf("Bienvenue au jeu du PUISSANCE 4\n");
-  return 0;
-  }
 
 }
 
@@ -23,6 +17,10 @@ int init(void)
 
 int main(void)
 {
+  // Texte de bienvenue
+  printf("Bienvenue au jeu du PUISSANCE 4\n");
+  return 0;
+
   // Initialisation de la table du jeu
   int table(void)
  	{
