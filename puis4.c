@@ -14,7 +14,8 @@ int start_game;
 char token[] = "ox"; // -> token[joueur];
 int victory = 0;
 int diago = 0;
-int choix_joueur = 1;
+int choix_joueur = 0;
+int egalite = 0;
 
 // INITIALISATION
 
@@ -32,70 +33,77 @@ int init(void){
 }
 
 int cond_victoire(void){
-  int egalite =0;
+  egalite +=1;
   for (l=0;l<NBL;l++){
     for(c=0;c<NBC;c++){
       if(tab[l][c] == tab[l+1][c] && tab[l+1][c] == tab[l+2][c] && tab[l+2][c] == tab[l+3][c] && tab[l][c] != '.' && l<4)
         {
           printf("Félicitation le joueur %d à gagné la partie",(joueur+1));
           victory = 1;
-	  choix_joueur=0;
+	  break;
         }
       else if(tab[l][c] == tab[l][c+1] && tab[l][c+1] == tab[l][c+2] && tab[l][c+2] == tab[l][c+3] && tab[l][c] != '.' && c<3){
         printf("Félicitaion le joueur %d à gagné la partie",(joueur+1));
         victory = 1;
-	choix_joueur = 0;
+	break;
       }
-      else  if(l<3 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.'){
-        for(int i=0;i<3;i++){
-          if(tab[l][c] == tab[l+i][c+i]){
-            diago += 1;
-          }
-        }
-        if (diago ==3){
-          printf("Victoire");
-	  victory = 1;
-	  choix_joueur=0;
-        }
-      }
-      else if(l>3 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
-        for(int i=0;i<3;i++){
-          if(tab[l][c] == tab[l-i][c-i]){
-            diago += 1;
-          }
-        }
-        if(diago == 3){
-          printf("Victoire");
-	  victory = 1;
-	  choix_joueur=0;
-        }
-        else if (l==4 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.' || l==4 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
-          int diago_g = 0;
-          int diago_d = 0;
-          for (int i=0;i<3;i++){
-            if (tab[l][c] == tab[l-i][c-i]){
-              diago_g += 1;
-            }
-            else if (tab[l][c] == tab[l+i][c+i]){
-              diago_d +=1;
-            }
-          }
-          if (diago_g == 3 || diago_d ==3){
-            printf("victoire");
+      else  if(c<3 && l<4 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.'){
+          if(tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
+	    printf("Victoire");
 	    victory = 1;
-	    choix_joueur = 0;
-          }
-        }
-        else if(tab[l][c] != '.' && victory == 0){
-	  egalite += 1;
-	  if(egalite = 42){
-	    victory = 2;
-	    choix_joueur = 0;
+	    break;
+	  }
+      }
+      else if(c>3 && l>4 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
+          if(tab[l][c] == tab[l-1][c-1]&& tab[l-1][c-1] == tab[l-2][c-2] && tab[l-2][c-2] == tab[l-3][c-3]){
+	    printf("Victoire");
+	    victory = 1;
+	    break;
 	  }
         }
+      else if(c<3 && l>4 && tab[l][c] == tab[l-1][c+1] && tab[l][c] != '.'){
+	if(tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3]){
+	  printf("victoire");
+	  victory = 1;
+	  break;
+	}
+      }
+      else if(c>3 && l<4 && tab[l][c] == tab[l+1][c-1] && tab[l][c] != '.'){
+	if(tab[l][c] == tab[l+1][c-1]&& tab[l-1][c-1] == tab[l+2][c-2] && tab[l+2][c-2] == tab[l+3][c-3]){
+	  printf("victoire");
+	  victory = 1;
+	  break;
+	}
+      }
+      else if (c==3 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.' || c==3 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'|| c==3 && tab[l][c] == tab[l+1][c-1] && tab[l][c] != '.'|| c==3 && tab[l][c] == tab[l-1][c+1] && tab[l][c] != '.'){
+	if (l>4 && tab[l][c] == tab[l-1][c-1]&& tab[l-1][c-1] == tab[l-2][c-2] && tab[l-2][c-2] == tab[l-3][c-3]){
+	  printf("victoire");
+	  victory = 1;
+	  break;
+	}
+	else if (l<4 && tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
+	  printf("victoire");
+	  victory = 1;
+	  break;
+	}
+	else if(l>4 && tab[l][c] == tab[l+1][c-1]&& tab[l+1][c-1] == tab[l+2][c-2] && tab[l+2][c-2] == tab[l+3][c-3]){
+	  printf("victoire");
+	  victory = 1;
+	  break;
+	}
+	else if(l<4 && tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3]){
+	  printf("victoire");
+	  victory = 1;
+	  break;
+	}
       }
     }
   }
+  if(egalite == 42){
+    printf("Egalité");
+    victory =2;
+  }
+  choix_joueur = 0;
 }
 
 
@@ -129,7 +137,7 @@ int main(void)   // Boucle principale
 	    }
 	  }
       }
-    printf("\n-------------\n1 2 3 4 5 6 7\n\n");
+    printf("%s\n-------------\n1 2 3 4 5 6 7\n\n",KNRM);
     return 0;
   }
   void change_table(int colonne)
@@ -160,22 +168,22 @@ int main(void)   // Boucle principale
   init();
   while(victory != 1)
     {
-      if (victory == 2)
+      while(choix_joueur<1 || choix_joueur>7)
 	{
+	  printf("En avant joueur %d\n", (joueur+1));
+	  printf("Saisir le numéro de la colonne\n");
+	  scanf("%d",&choix_joueur);
+	}
+      if(choix_joueur){	
+	change_table(choix_joueur);
+	cond_victoire();
+	if (victory == 2){
 	  printf("Egalité \n");
 	  break;
 	}
-      else
-	{
-	  while(choix_joueur>=1&&choix_joueur<=7)
-	    {
-	      printf("En avant joueur %d\n", (joueur+1));
-	      printf("Saisir le numéro de la colonne\n");
-	      scanf("%d",&choix_joueur);
-	      change_table(choix_joueur);
-	      cond_victoire();
-	      joueur = !joueur;
-	    }
+	else{
+	  joueur = !joueur;
 	}
+      }
     }
 }
