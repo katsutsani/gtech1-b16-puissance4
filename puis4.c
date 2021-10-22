@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <time.h>
+#define KNRM  "\x1B[0m"
+#define KYEL  "\x1B[33m"
+#define KRED  "\x1B[31m"
 #define NBL 6
 #define NBC 7
 
@@ -74,7 +77,11 @@ int cond_victoire(void){
             printf("victoire");
           }
         }
-        else if(tab[l][c] != '.'){
+        else if(tab[l][c] != '.' && victory == 0){
+	  egalite += 1;
+	  if (egalite = 42){
+	    victory = 2;
+	  }
         }
       }
     }
@@ -92,29 +99,37 @@ Game ?\n\n[y] - Yes\n[n] - No\n\n"); // Texte de bienvenue + condition de start
     }
 
   // Boucle principale
-  init();
-  while(victory != 1){
-    if (victory == 2){
-      printf("Egalité \n");
-      break;
-    }
-  }
+  // init();
+  // while(victory != 1){
+    // if (victory == 2){
+      // printf("Egalité \n");
+      // break;
+      // }
+    // }
 
 // Initialisation de la table du jeu
 
   int table(void){
     // Affichage du plateau
-    printf("\n\n-------------");
+    printf("\n\n-------------\n");
     for(l=0;l<NBL;l++)
       {
 	printf("\n");
 	for(c=0;c<NBC;c++)
 	  {
-	    printf("%c ",tab[l][c]);
+	    if(tab[l][c] == 'x'){
+	      printf("%s%c ",KRED, tab[l][c]);
+	    }
+	    else if(tab[l][c] == 'o'){
+	      printf("%s%c ",KYEL,tab[l][c]);
+	    }
+	    else if(tab[l][c] == '.'){
+	      printf("%s%c ",KNRM,tab[l][c]);
+	    }
 	  }
+      }
     printf("\n-------------\n1 2 3 4 5 6 7\n\n");
     return 0;
-      }
   }
   void change_table(int colonne){
     for(l=(NBL-1);l>=0;l--){
@@ -126,7 +141,7 @@ Game ?\n\n[y] - Yes\n[n] - No\n\n"); // Texte de bienvenue + condition de start
 	  tab[l][c] = '.';
 	}
 	else{
-	  tab[l][c] = token[0];
+	  tab[l][c] = token[1];
 	  colonne = 10;
 	}
       }
