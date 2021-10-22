@@ -32,50 +32,50 @@ int cond_victoire(void){
   for (l=0;l<NBL;l++){
     for(c=0;c<NBC;c++){
       if(tab[l][c] == tab[l+1][c] && tab[l+1][c] == tab[l+2][c] && tab[l+2][c] == tab[l+3][c] && tab[l][c] != '.' && l<4)
-	{
-	  printf("Félicitation le joueur %d à gagné la partie",(joueur+1));
-	  victory = 1;
-	}
+        {
+          printf("Félicitation le joueur %d à gagné la partie",(joueur+1));
+          victory = 1;
+        }
       else if(tab[l][c] == tab[l][c+1] && tab[l][c+1] == tab[l][c+2] && tab[l][c+2] == tab[l][c+3] && tab[l][c] != '.' && c<3){
-	printf("Félicitaion le joueur %d à gagné la partie",(joueur+1));
-	victory = 1;
+        printf("Félicitaion le joueur %d à gagné la partie",(joueur+1));
+        victory = 1;
       }
       else  if(l<3 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.'){
-	for(int i=0;i<3;i++){
-	  if(tab[l][c] == tab[l+i][c+i]){
-	    diago += 1;
-	  }
-	}
-	if (diago ==3){
-	  printf("Victoire");
-	}
+        for(int i=0;i<3;i++){
+          if(tab[l][c] == tab[l+i][c+i]){
+            diago += 1;
+          }
+        }
+        if (diago ==3){
+          printf("Victoire");
+        }
       }
       else if(l>3 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
-	for(int i=0;i<3;i++){
-	  if(tab[l][c] == tab[l-i][c-i]){
-	    diago += 1;
-	  }
-	}
-	if(diago == 3){
-	  printf("Victoire");
-	}
-	else if (l==4 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.' || l==4 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
-	  int diago_g = 0;
-	  int diago_d = 0;
-	  for (int i=0;i<3;i++){
-	    if (tab[l][c] == tab[l-i][c-i]){
-	      diago_g += 1;
-	    }
-	    else if (tab[l][c] == tab[l+i][c+i]){
-	      diago_d +=1;
-	    }
-	  }
-	  if (diago_g == 3 || diago_d ==3){
-	    printf("victoire");
-	  }
-	}
-	else if(tab[l][c] != '.'){
-	}
+        for(int i=0;i<3;i++){
+          if(tab[l][c] == tab[l-i][c-i]){
+            diago += 1;
+          }
+        }
+        if(diago == 3){
+          printf("Victoire");
+        }
+        else if (l==4 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.' || l==4 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
+          int diago_g = 0;
+          int diago_d = 0;
+          for (int i=0;i<3;i++){
+            if (tab[l][c] == tab[l-i][c-i]){
+              diago_g += 1;
+            }
+            else if (tab[l][c] == tab[l+i][c+i]){
+              diago_d +=1;
+            }
+          }
+          if (diago_g == 3 || diago_d ==3){
+            printf("victoire");
+          }
+        }
+        else if(tab[l][c] != '.'){
+        }
       }
     }
   }
@@ -100,11 +100,9 @@ Game ?\n\n[y] - Yes\n[n] - No\n\n"); // Texte de bienvenue + condition de start
     }
   }
 
-  // Initialisation de la table du jeu
+// Initialisation de la table du jeu
 
-  int table(void)
-  {
-
+  int table(void){
     // Affichage du plateau
     printf("\n\n-------------");
     for(l=0;l<NBL;l++)
@@ -114,9 +112,9 @@ Game ?\n\n[y] - Yes\n[n] - No\n\n"); // Texte de bienvenue + condition de start
 	  {
 	    printf("%c ",tab[l][c]);
 	  }
-      }
     printf("\n-------------\n1 2 3 4 5 6 7\n\n");
     return 0;
+      }
   }
   void change_table(int colonne){
     for(l=(NBL-1);l>=0;l--){
@@ -124,7 +122,7 @@ Game ?\n\n[y] - Yes\n[n] - No\n\n"); // Texte de bienvenue + condition de start
 	if(tab[l][c] == 'x' || tab[l][c] == 'o'){
 	  continue;
 	}
-	else if (tab[l][c] = '.' && c != (colonne-1)){
+	else if (tab[l][c] == '.' && c != (colonne-1)){
 	  tab[l][c] = '.';
 	}
 	else{
@@ -136,10 +134,3 @@ Game ?\n\n[y] - Yes\n[n] - No\n\n"); // Texte de bienvenue + condition de start
     table();
   }
 }
-// Affichage invité (prompteur) pour le joueur courant
-
-// Saisie du numéro de colonne joué par le joueur courant
-
-// Actualisation de la table du jeu
-
-// [ Optionel: Test du vainqueur ]
