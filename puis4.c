@@ -38,61 +38,61 @@ int cond_victoire(void){
     for(c=0;c<NBC;c++){
       if(tab[l][c] == tab[l+1][c] && tab[l+1][c] == tab[l+2][c] && tab[l+2][c] == tab[l+3][c] && tab[l][c] != '.' && l<4)
         {
-          printf("Félicitation le joueur %d à gagné la partie",(joueur+1));
+          printf("Congratulations player %d, you have won the game !",(joueur+1));
           victory = 1;
 	  break;
         }
       else if(tab[l][c] == tab[l][c+1] && tab[l][c+1] == tab[l][c+2] && tab[l][c+2] == tab[l][c+3] && tab[l][c] != '.' && c<3){
-        printf("Félicitaion le joueur %d à gagné la partie",(joueur+1));
+        printf("Congratulations player %d, you have won the game !",(joueur+1));
         victory = 1;
 	break;
       }
       else  if(c<3 && l<4 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.'){
           if(tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
-	    printf("Victoire");
+	    printf("Congratulations player %d, you have won the game !");
 	    victory = 1;
 	    break;
 	  }
       }
       else if(c>3 && l>4 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
           if(tab[l][c] == tab[l-1][c-1]&& tab[l-1][c-1] == tab[l-2][c-2] && tab[l-2][c-2] == tab[l-3][c-3]){
-	    printf("Victoire");
+	    printf("Congratulations player %d, you have won the game !");
 	    victory = 1;
 	    break;
 	  }
         }
       else if(c<3 && l>4 && tab[l][c] == tab[l-1][c+1] && tab[l][c] != '.'){
 	if(tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3]){
-	  printf("victoire");
+	  printf("Congratulations player %d, you have won the game !");
 	  victory = 1;
 	  break;
 	}
       }
       else if(c>3 && l<4 && tab[l][c] == tab[l+1][c-1] && tab[l][c] != '.'){
 	if(tab[l][c] == tab[l+1][c-1]&& tab[l-1][c-1] == tab[l+2][c-2] && tab[l+2][c-2] == tab[l+3][c-3]){
-	  printf("victoire");
+	  printf("Congratulations player %d, you have won the game !");
 	  victory = 1;
 	  break;
 	}
       }
       else if (c==3 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.' || c==3 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'|| c==3 && tab[l][c] == tab[l+1][c-1] && tab[l][c] != '.'|| c==3 && tab[l][c] == tab[l-1][c+1] && tab[l][c] != '.'){
 	if (l>4 && tab[l][c] == tab[l-1][c-1]&& tab[l-1][c-1] == tab[l-2][c-2] && tab[l-2][c-2] == tab[l-3][c-3]){
-	  printf("victoire");
+	  printf("Congratulations player %d, you have won the game !");
 	  victory = 1;
 	  break;
 	}
 	else if (l<4 && tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
-	  printf("victoire");
+	  printf("Congratulations player %d, you have won the game !");
 	  victory = 1;
 	  break;
 	}
 	else if(l>4 && tab[l][c] == tab[l+1][c-1]&& tab[l+1][c-1] == tab[l+2][c-2] && tab[l+2][c-2] == tab[l+3][c-3]){
-	  printf("victoire");
+	  printf("Congratulations player %d, you have won the game !");
 	  victory = 1;
 	  break;
 	}
 	else if(l<4 && tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3]){
-	  printf("victoire");
+	  printf("Congratulations player %d, you have won the game !");
 	  victory = 1;
 	  break;
 	}
@@ -100,7 +100,7 @@ int cond_victoire(void){
     }
   }
   if(egalite == 42){
-    printf("Egalité");
+    printf("Equality");
     victory =2;
   }
   choix_joueur = 0;
@@ -170,15 +170,14 @@ int main(void)   // Boucle principale
     {
       while(choix_joueur<1 || choix_joueur>7)
 	{
-	  printf("En avant joueur %d\n", (joueur+1));
-	  printf("Saisir le numéro de la colonne\n");
+	  printf("Your turn player number %d, enter the column number :\n\n", (joueur+1));
 	  scanf("%d",&choix_joueur);
 	}
       if(choix_joueur){	
 	change_table(choix_joueur);
 	cond_victoire();
 	if (victory == 2){
-	  printf("Egalité \n");
+	  printf("Equality \n");
 	  break;
 	}
 	else{
