@@ -16,6 +16,7 @@ int victory = 0;
 int diago = 0;
 int choix_joueur = 0;
 int egalite = 0;
+int column_full = 0;
 
 // INITIALISATION
 
@@ -49,50 +50,50 @@ int cond_victoire(void){
       }
       else  if(c<3 && l<4 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.'){
           if(tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
-	    printf("Congratulations player %d, you have won the game !");
+	    printf("Congratulations player %d, you have won the game !",(joueur+1));
 	    victory = 1;
 	    break;
 	  }
       }
       else if(c>3 && l>4 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
           if(tab[l][c] == tab[l-1][c-1]&& tab[l-1][c-1] == tab[l-2][c-2] && tab[l-2][c-2] == tab[l-3][c-3]){
-	    printf("Congratulations player %d, you have won the game !");
+	    printf("Congratulations player %d, you have won the game !",(joueur+1));
 	    victory = 1;
 	    break;
 	  }
         }
       else if(c<3 && l>4 && tab[l][c] == tab[l-1][c+1] && tab[l][c] != '.'){
 	if(tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3]){
-	  printf("Congratulations player %d, you have won the game !");
+	  printf("Congratulations player %d, you have won the game !",(joueur+1));
 	  victory = 1;
 	  break;
 	}
       }
       else if(c>3 && l<4 && tab[l][c] == tab[l+1][c-1] && tab[l][c] != '.'){
 	if(tab[l][c] == tab[l+1][c-1]&& tab[l-1][c-1] == tab[l+2][c-2] && tab[l+2][c-2] == tab[l+3][c-3]){
-	  printf("Congratulations player %d, you have won the game !");
+	  printf("Congratulations player %d, you have won the game !",(joueur+1));
 	  victory = 1;
 	  break;
 	}
       }
       else if (c==3 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.' || c==3 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'|| c==3 && tab[l][c] == tab[l+1][c-1] && tab[l][c] != '.'|| c==3 && tab[l][c] == tab[l-1][c+1] && tab[l][c] != '.'){
 	if (l>4 && tab[l][c] == tab[l-1][c-1]&& tab[l-1][c-1] == tab[l-2][c-2] && tab[l-2][c-2] == tab[l-3][c-3]){
-	  printf("Congratulations player %d, you have won the game !");
+	  printf("Congratulations player %d, you have won the game !",(joueur+1));
 	  victory = 1;
 	  break;
 	}
 	else if (l<4 && tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
-	  printf("Congratulations player %d, you have won the game !");
+	  printf("Congratulations player %d, you have won the game !",(joueur+1));
 	  victory = 1;
 	  break;
 	}
 	else if(l>4 && tab[l][c] == tab[l+1][c-1]&& tab[l+1][c-1] == tab[l+2][c-2] && tab[l+2][c-2] == tab[l+3][c-3]){
-	  printf("Congratulations player %d, you have won the game !");
+	  printf("Congratulations player %d, you have won the game !",(joueur+1));
 	  victory = 1;
 	  break;
 	}
 	else if(l<4 && tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3]){
-	  printf("Congratulations player %d, you have won the game !");
+	  printf("Congratulations player %d, you have won the game !",(joueur+1));
 	  victory = 1;
 	  break;
 	}
@@ -100,7 +101,6 @@ int cond_victoire(void){
     }
   }
   if(egalite == 42){
-    printf("Equality");
     victory =2;
   }
   choix_joueur = 0;
@@ -173,16 +173,32 @@ int main(void)   // Boucle principale
 	  printf("Your turn player number %d, enter the column number :\n\n", (joueur+1));
 	  scanf("%d",&choix_joueur);
 	}
-      if(choix_joueur){	
-	change_table(choix_joueur);
-	cond_victoire();
-	if (victory == 2){
-	  printf("Equality \n");
-	  break;
+      if(choix_joueur){
+	column_full = 0;
+	for(l=0;l<NBL;l++){
+	  if(tab[l][choix_joueur-1] == 'x' || tab[l][choix_joueur-1] == 'o'){
+	    column_full +=1;
+	  }
+	}
+	if(column_full == 6){
+	  printf("The column selected is already full, please select another one\n");
+	  column_full = 0;
+	  choix_joueur = 0;
 	}
 	else{
-	  joueur = !joueur;
+	  change_table(choix_joueur);
+	  cond_victoire();
+	  if (victory == 2){
+	    printf("Equality \n");
+	    break;
+	  }
+	  else{
+	    joueur = !joueur;
+	  }
 	}
+      }     
+      else{
+	break;
       }
     }
 }
