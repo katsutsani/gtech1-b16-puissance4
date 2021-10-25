@@ -1,7 +1,7 @@
 G.Tech 1
 Lilian Prieu / Guillaume Simoes
 
-Règles du jeu du Puissance 4 :
+FR - Règles du jeu du Puissance 4 :
 
 Le but du jeu est d'aligner une suite de 4 pions de même couleur sur
 une grille comptant 6 rangées et 7 colonnes.
@@ -21,3 +21,24 @@ pions de sa couleur.
 Si, alors que toutes les cases de la grille de jeu sont remplies,
 aucun des deux joueurs n'a réalisé un tel alignement, la partie
 est déclarée nulle.
+
+EN - Connect 4 game rules :
+
+The aim of the game is to line up a sequence of 4 pieces of the same colour on a grid
+a grid of 6 rows and 7 columns.
+
+Each player has 21 pieces of one colour (by convention, usually yellow or red).
+usually yellow or red).
+
+In turn, both players place a checker in the column of their choice, the checker then
+of their choice, the piece then slides to the lowest possible position
+possible in the said column, after which it is the opponent's turn
+to play.
+
+The winner is the player who first achieves a line-up
+(horizontal, vertical or diagonal) of at least four pieces of his colour.
+of his colour.
+
+If, after all the squares on the board have been filled, neither player has made a row of at least four checkers of his or her colour,
+neither player has made such an alignment, the game is declared a draw.
+declared a draw.
