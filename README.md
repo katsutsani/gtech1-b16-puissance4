@@ -1,8 +1,7 @@
-# gtech1-b16-puissance4
-
+G.Tech 1
 Lilian Prieu / Guillaume Simoes
 
-------------------- Règles du jeu du Puissance 4 --------------------
+Règles du jeu du Puissance 4 :
 
 Le but du jeu est d'aligner une suite de 4 pions de même couleur sur
 une grille comptant 6 rangées et 7 colonnes.
