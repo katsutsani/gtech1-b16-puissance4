@@ -39,64 +39,24 @@ int cond_victoire(void){
     for(c=0;c<NBC;c++){
       if(tab[l][c] == tab[l+1][c] && tab[l+1][c] == tab[l+2][c] && tab[l+2][c] == tab[l+3][c] && tab[l][c] != '.' && l<4)
         {
-          printf("Congratulations player %d, you have won the game !",(joueur+1));
+          printf("Congratulations player %d, you have won the game !\n",(joueur+1));
           victory = 1;
 	  break;
         }
       else if(tab[l][c] == tab[l][c+1] && tab[l][c+1] == tab[l][c+2] && tab[l][c+2] == tab[l][c+3] && tab[l][c] != '.' && c<3){
-        printf("Congratulations player %d, you have won the game !",(joueur+1));
+        printf("Congratulations player %d, you have won the game !\n",(joueur+1));
         victory = 1;
 	break;
+      }  
+      else if(tab[l][c] == tab[l-1][c+1]&& tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3] && tab[l][c] != '.'){
+	printf("Congratulations player %d, you have won the game !\n",(joueur+1));
+	victory = 1;
+	break;
       }
-      else  if(c<3 && l<4 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.'){
-          if(tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
-	    printf("Congratulations player %d, you have won the game !",(joueur+1));
-	    victory = 1;
-	    break;
-	  }
-      }
-      else if(c>3 && l>4 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'){
-          if(tab[l][c] == tab[l-1][c-1]&& tab[l-1][c-1] == tab[l-2][c-2] && tab[l-2][c-2] == tab[l-3][c-3]){
-	    printf("Congratulations player %d, you have won the game !",(joueur+1));
-	    victory = 1;
-	    break;
-	  }
-        }
-      else if(c<3 && l>4 && tab[l][c] == tab[l-1][c+1] && tab[l][c] != '.'){
-	if(tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3]){
-	  printf("Congratulations player %d, you have won the game !",(joueur+1));
-	  victory = 1;
-	  break;
-	}
-      }
-      else if(c>3 && l<4 && tab[l][c] == tab[l+1][c-1] && tab[l][c] != '.'){
-	if(tab[l][c] == tab[l+1][c-1]&& tab[l-1][c-1] == tab[l+2][c-2] && tab[l+2][c-2] == tab[l+3][c-3]){
-	  printf("Congratulations player %d, you have won the game !",(joueur+1));
-	  victory = 1;
-	  break;
-	}
-      }
-      else if (c==3 && tab[l][c] == tab[l+1][c+1] && tab[l][c] != '.' || c==3 && tab[l][c] == tab[l-1][c-1] && tab[l][c] != '.'|| c==3 && tab[l][c] == tab[l+1][c-1] && tab[l][c] != '.'|| c==3 && tab[l][c] == tab[l-1][c+1] && tab[l][c] != '.'){
-	if (l>4 && tab[l][c] == tab[l-1][c-1]&& tab[l-1][c-1] == tab[l-2][c-2] && tab[l-2][c-2] == tab[l-3][c-3]){
-	  printf("Congratulations player %d, you have won the game !",(joueur+1));
-	  victory = 1;
-	  break;
-	}
-	else if (l<4 && tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
-	  printf("Congratulations player %d, you have won the game !",(joueur+1));
-	  victory = 1;
-	  break;
-	}
-	else if(l>4 && tab[l][c] == tab[l+1][c-1]&& tab[l+1][c-1] == tab[l+2][c-2] && tab[l+2][c-2] == tab[l+3][c-3]){
-	  printf("Congratulations player %d, you have won the game !",(joueur+1));
-	  victory = 1;
-	  break;
-	}
-	else if(l<4 && tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3]){
-	  printf("Congratulations player %d, you have won the game !",(joueur+1));
-	  victory = 1;
-	  break;
-	}
+      else if(tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3] && tab[l][c] != '.'){
+	printf("Congratulations player %d, you have won the game !\n",(joueur+1));
+	victory = 1;
+	break;
       }
     }
   }
