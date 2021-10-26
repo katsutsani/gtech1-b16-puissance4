@@ -3,8 +3,8 @@ Lilian Prieu / Guillaume Simoes
 
 How to play ?
 
-You need the Debian OS.
-You need the compiler, to install it type the following commands in the terminal: sudo apt-get update
+1) You need the Debian OS. You can download it from the microsoft store, it's free
+2) You need the compiler, to install it type the following commands in the terminal: sudo apt-get update
 And : sudo apt-get install man make gcc git openssh-client
 
 
