@@ -1,6 +1,13 @@
 G.Tech 1
 Lilian Prieu / Guillaume Simoes
 
+How to play ?
+
+You need the Debian OS.
+You need the compiler, to install it type the following commands in the terminal: sudo apt-get update
+And : sudo apt-get install man make gcc git openssh-client
+
+
 FR - Règles du jeu du Puissance 4 :
 
 Le but du jeu est d'aligner une suite de 4 pions de même couleur sur une grille comptant 6 rangées et 7 colonnes.
