@@ -22,6 +22,7 @@ void flushstdin() {
 }
 
 char **tab_malloc() {
+  printf("%d %d\n",NBL,NBC);
   char **tab_ = (char**)malloc(NBL * sizeof(char*));
   for (l = 0; l < NBL; l++)
     tab_[l] = (char*)malloc(NBC * sizeof(char));
@@ -29,7 +30,6 @@ char **tab_malloc() {
 }
 
 // INITIALISATION
-
 int init(){
   printf("\n\n_ _ _ _ _ _ _\n");
   for(l=0;l<NBL;l++) {
@@ -43,46 +43,11 @@ int init(){
   return 0;
 }
 
-int cond_victoire(void){
-  egalite +=1;
-  for (l=0;l<NBL;l++){
-    for(c=0;c<NBC;c++){
-      if(tab[l][c] == tab[l+1][c] && tab[l+1][c] == tab[l+2][c] && tab[l+2][c] == tab[l+3][c] && tab[l][c] != '.' && l<4) //condition de victoire si 4 tokens identiques sont alignés en colonne
-        {
-          printf("Congratulations player %d, you have won the game !\n",(joueur+1));
-          victory = 1;
-	  break;
-        }
-      else if(tab[l][c] == tab[l][c+1] && tab[l][c+1] == tab[l][c+2] && tab[l][c+2] == tab[l][c+3] && tab[l][c] != '.' && c<3){ //condition de victoire si 4 tokens identiques sont alignés en ligne
-        printf("Congratulations player %d, you have won the game !\n",(joueur+1));
-        victory = 1;
-	break;
-      }
-      else if(tab[l][c] == tab[l-1][c+1] && tab[l-1][c+1] == tab[l-2][c+2] && tab[l-2][c+2] == tab[l-3][c+3] && tab[l][c] != '.'){ //condition de victoire si 4 tokens identiques sont alignés en diagonale
-	printf("Congratulations player %d, you have won the game !\n",(joueur+1));
-	victory = 1;
-	break;
-      }
-      else if(tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3] && tab[l][c] != '.'){ //condition de victoire si 4 tokens identiques sont alignés en diagonale
-	printf("Congratulations player %d, you have won the game !\n",(joueur+1));
-	victory = 1;
-	break;
-      }
-    }
-  }
-  if(egalite == 42){ //regarde si le plateau est plein
-    victory =2;
-  }
-  choix_joueur = 0;
-}
-
 int table(void) //Affichage du plateau
 {
-  printf("%d %d",NBL,NBC);
   printf("\n\n- - - - - - -\n");
   for(l=0;l<NBL;l++)
     {
-      printf("\n");
       for(c=0;c<NBC;c++)
 	{
 	  if(tab[l][c] == 'x'){
@@ -95,20 +60,20 @@ int table(void) //Affichage du plateau
 	    printf("%s%c ",KNRM,tab[l][c]);
 	  }
 	}
+      printf("\n");
     }
-  printf("%s\n- - - - - - -\n1 2 3 4 5 6 7\n\n",KNRM);
-  return 0;
+  printf("\n_ _ _ _ _ _ _\n\n");
 }
 
 void change_table(int colonne) //changer les tableau pour entrer le token
 {
-  printf("%d %d",NBL,NBC);
   for(l=(NBL-1);l>=0;l--)
     {
       for(c=0;c<NBC;c++)
 	{
 	  if(tab[l][c] == 'x' || tab[l][c] == 'o')
 	    {
+	      printf(" 3 %c\n",tab[l][c]);
 	      continue;
 	    }
 	  else if (tab[l][c] == '.' && c != (colonne-1))
@@ -118,11 +83,18 @@ void change_table(int colonne) //changer les tableau pour entrer le token
 	  else
 	    {
 	      tab[l][c] = token[joueur];
-	      colonne = 10;
+	      colonne = -1;
 	    }
 	}
     }
   table();
+}
+
+int cond_victoire(void){
+  egalite +=1;
+  for (l=0;l<(NBL-3);l++){
+    printf("test");
+  }
 }
 
 
@@ -139,7 +111,6 @@ void change_table(int colonne) //changer les tableau pour entrer le token
   if(tab != NULL){
     while (start_game != 'y')
       {
-	printf("%d \n",NBC);
 	printf("Welcome to the game of the CONNECT 4\n\nLes dimensions du plateau du jeu sous la forme : 6x7\n\nStart Game ?\n\n[y] - Yes\n[n] - No\n\n"); // Texte de bienvenue + condition de start
 	scanf("%c", &start_game);
       }
@@ -148,13 +119,11 @@ void change_table(int colonne) //changer les tableau pour entrer le token
     init();
     while(victory != 1)
       {
-	while(choix_joueur<1 || choix_joueur>7)
+	while(choix_joueur<1 || choix_joueur>NBC)
 	  {
 	    printf("Your turn player number %d, your token is [%c], enter the column number :\n\n", (joueur+1),token[joueur]);
 	    int retour_scanf = scanf("%d",&choix_joueur);
-	    if(retour_scanf != 1){
-	      flushstdin();
-	    }
+	    flushstdin();
 	  }
 	column_full = 0;
 	for(l=0;l<NBL;l++){
@@ -170,7 +139,7 @@ void change_table(int colonne) //changer les tableau pour entrer le token
 	else{
 	  change_table(choix_joueur);
 	  cond_victoire();
-	  if (victory == 2){
+ 	  if (victory == 2){
 	    printf("Equality \n");
 	    break;
 	  }
