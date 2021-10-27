@@ -1,6 +1,16 @@
 G.Tech 1
 Lilian Prieu / Guillaume Simoes
 
+How to play ?
+
+1) You need the Debian OS. You can download it from the microsoft store, it's free.
+2) You need the compiler, to install it type the following commands in the terminal: sudo apt-get update
+And : sudo apt-get install man make gcc git openssh-client
+3) Issue the command : git clone https://github.com/katsutsani/gtech1-b16-puissance4.git
+4) Access the executable file as follows : cd gtech1-b16-puissance4/
+5) Compile the file: gcc then4.c -o then4
+6) Run the file : ./puis4
+
 FR - Règles du jeu du Puissance 4 :
 
 Le but du jeu est d'aligner une suite de 4 pions de même couleur sur une grille comptant 6 rangées et 7 colonnes.
