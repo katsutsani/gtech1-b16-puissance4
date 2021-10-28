@@ -22,7 +22,6 @@ void flushstdin() {
 }
 
 char **tab_malloc() {
-  printf("%d %d\n",NBL,NBC);
   char **tab_ = (char**)malloc(NBL * sizeof(char*));
   for (l = 0; l < NBL; l++)
     tab_[l] = (char*)malloc(NBC * sizeof(char));
@@ -31,7 +30,10 @@ char **tab_malloc() {
 
 // INITIALISATION
 int init(){
-  printf("\n\n_ _ _ _ _ _ _\n");
+  for (c=0;c<NBC;c++){
+    printf("_ ");
+  }
+  printf("\n");
   for(l=0;l<NBL;l++) {
     for(c=0;c<NBC;c++)   {
       tab[l][c] = '.';
@@ -39,30 +41,79 @@ int init(){
     }
     printf("\n");
   }
-  printf("_ _ _ _ _ _ _\n\n1 2 3 4 5 6 7\n\n");
+  for (c=0;c<NBC;c++){
+    printf("_ ");
+  }
+  printf("\n\n");
+  for(c=0;c<NBC;c++){
+    printf("%d ",(c+1));
+  }
   return 0;
 }
 
 int table(void) //Affichage du plateau
 {
-  printf("\n\n- - - - - - -\n");
-  for(l=0;l<NBL;l++)
-    {
-      for(c=0;c<NBC;c++)
-	{
-	  if(tab[l][c] == 'x'){
-	    printf("%s%c ",KRED, tab[l][c]);
-	  }
-	  else if(tab[l][c] == 'o'){
-	    printf("%s%c ",KYEL,tab[l][c]);
-	  }
-	  else if(tab[l][c] == '.'){
-	    printf("%s%c ",KNRM,tab[l][c]);
-	  }
-	}
-      printf("\n");
+  if(NBC>10){
+    for (c=0;c<NBC;c++){
+      printf("_  ");
     }
-  printf("\n_ _ _ _ _ _ _\n\n");
+    printf("\n");
+    for(l=0;l<NBL;l++)
+      {
+	for(c=0;c<NBC;c++)
+	  {
+	    if(tab[l][c] == 'x'){
+	      printf("%s%c  ",KRED, tab[l][c]);
+	    }
+	    else if(tab[l][c] == 'o'){
+	      printf("%s%c  ",KYEL,tab[l][c]);
+	    }
+	    else if(tab[l][c] == '.'){
+	      printf("%s%c  ",KNRM,tab[l][c]);
+	    }
+	  }
+	printf("\n");
+      }
+    for (c=0;c<NBC;c++){
+      printf("%s_  ",KNRM);
+    }
+    printf("\n\n");
+    for(c=0;c<NBC;c++){
+      printf("%d ",(c+1));
+    }for (c=0;c<NBC;c++){
+      printf("_  ");
+    }
+    printf("\n");
+  }
+  else{ 
+    for (c=0;c<NBC;c++){
+      printf("_ ");
+    }
+    printf("\n");
+    for(l=0;l<NBL;l++)
+      {
+	for(c=0;c<NBC;c++)
+	  {
+	    if(tab[l][c] == 'x'){
+	      printf("%s%c ",KRED, tab[l][c]);
+	    }
+	    else if(tab[l][c] == 'o'){
+	      printf("%s%c ",KYEL,tab[l][c]);
+	    }
+	    else if(tab[l][c] == '.'){
+	      printf("%s%c ",KNRM,tab[l][c]);
+	    }
+	  }
+	printf("\n");
+      }
+    for (c=0;c<NBC;c++){
+      printf("%s_ ",KNRM);
+    }
+    printf("\n\n");
+    for(c=0;c<NBC;c++){
+      printf("%d ",(c+1));
+    }
+  }
 }
 
 void change_table(int colonne) //changer les tableau pour entrer le token
@@ -73,7 +124,6 @@ void change_table(int colonne) //changer les tableau pour entrer le token
 	{
 	  if(tab[l][c] == 'x' || tab[l][c] == 'o')
 	    {
-	      printf(" 3 %c\n",tab[l][c]);
 	      continue;
 	    }
 	  else if (tab[l][c] == '.' && c != (colonne-1))
@@ -93,8 +143,33 @@ void change_table(int colonne) //changer les tableau pour entrer le token
 int cond_victoire(void){
   egalite +=1;
   for (l=0;l<(NBL-3);l++){
-    printf("test");
+    for (c=0;c<NBC;c++){
+      if (tab[l][c] != '.' && tab[l][c] == tab[l+1][c] && tab[l+1][c] == tab[l+2][c] && tab[l+2][c] == tab[l+3][c]){
+	printf("Congratulations player %d, you have won the game !\n",(joueur+1));
+	victory = 1;
+      }
+    }
   }
+  for (l=0;l<(NBL-3);l++){
+    for (c=0;c<(NBC-3);c++){
+      if (tab[l][c] != '.' && tab[l][c] == tab[l+1][c+1] && tab[l+1][c+1] == tab[l+2][c+2] && tab[l+2][c+2] == tab[l+3][c+3]){
+	printf("Congratulations player %d, you have won the game !\n",(joueur+1));
+	victory = 1;
+      }
+    }
+  }
+  for (l=0;l<NBL;l++){
+    for (c=0;c<NBC;c++){
+      if (tab[l][c] != '.' && tab[l][c] == tab[l][c+1] && tab[l][c+1] == tab[l][c+2] && tab[l][c+2] == tab[l][c+3]){
+	printf("Congratulations player %d, you have won the game !\n",(joueur+1));
+	victory = 1;
+      }
+    }
+  }
+  if(egalite == (NBC*NBL)){
+    victory=2;
+  }
+  choix_joueur = -1;
 }
 
 
@@ -131,7 +206,7 @@ int cond_victoire(void){
 	    column_full +=1;
 	  }
 	}
-	if(column_full == 6){ //test si la colonne choisie est pleine
+	if(column_full == NBL){ //test si la colonne choisie est pleine
 	  printf("The column selected is already full, please select another one\n \n");
 	  column_full = 0;
 	  choix_joueur = 0;
@@ -140,7 +215,7 @@ int cond_victoire(void){
 	  change_table(choix_joueur);
 	  cond_victoire();
  	  if (victory == 2){
-	    printf("Equality \n");
+	    printf("\nEquality \n");
 	    break;
 	  }
 	  else{
