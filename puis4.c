@@ -31,23 +31,24 @@ char **tab_malloc() {
 // INITIALISATION
 int init(){
   for (c=0;c<NBC;c++){
-    printf("_ ");
+    printf("_  ");
   }
   printf("\n");
   for(l=0;l<NBL;l++) {
     for(c=0;c<NBC;c++)   {
       tab[l][c] = '.';
-      printf("%c ",tab[l][c]);
+      printf("%c  ",tab[l][c]);
     }
     printf("\n");
   }
   for (c=0;c<NBC;c++){
-    printf("_ ");
+    printf("_  ");
   }
   printf("\n\n");
   for(c=0;c<NBC;c++){
-    printf("%d ",(c+1));
+    printf ("%02d ",(c+1));
   }
+  printf("\n");
   return 0;
 }
 
@@ -79,15 +80,13 @@ int table(void) //Affichage du plateau
     }
     printf("\n\n");
     for(c=0;c<NBC;c++){
-      printf("%d ",(c+1));
-    }for (c=0;c<NBC;c++){
-      printf("_  ");
+      printf("%02d ",(c+1));
     }
     printf("\n");
   }
-  else{ 
+  else{
     for (c=0;c<NBC;c++){
-      printf("_ ");
+      printf("_  ");
     }
     printf("\n");
     for(l=0;l<NBL;l++)
@@ -110,8 +109,9 @@ int table(void) //Affichage du plateau
       printf("%s_ ",KNRM);
     }
     printf("\n\n");
+
     for(c=0;c<NBC;c++){
-      printf("%d ",(c+1));
+      printf("%02d \n",(c+1));
     }
   }
 }
@@ -186,7 +186,7 @@ int cond_victoire(void){
   if(tab != NULL){
     while (start_game != 'y')
       {
-	printf("Welcome to the game of the CONNECT 4\n\nLes dimensions du plateau du jeu sous la forme : 6x7\n\nStart Game ?\n\n[y] - Yes\n[n] - No\n\n"); // Texte de bienvenue + condition de start
+	printf("Welcome to the game of the CONNECT 4\n\nLes dimensions du plateau du jeu sous la forme : %dx%d \n\nStart Game ?\n\n[y] - Yes\n[n] - No\n\n",NBL,NBC); // Texte de bienvenue + condition de start
 	scanf("%c", &start_game);
       }
     
@@ -196,7 +196,7 @@ int cond_victoire(void){
       {
 	while(choix_joueur<1 || choix_joueur>NBC)
 	  {
-	    printf("Your turn player number %d, your token is [%c], enter the column number :\n\n", (joueur+1),token[joueur]);
+	    printf("\nYour turn player number %d, your token is [%c], enter the column number :\n\n", (joueur+1),token[joueur]);
 	    int retour_scanf = scanf("%d",&choix_joueur);
 	    flushstdin();
 	  }
@@ -207,7 +207,7 @@ int cond_victoire(void){
 	  }
 	}
 	if(column_full == NBL){ //test si la colonne choisie est pleine
-	  printf("The column selected is already full, please select another one\n \n");
+	  printf("\nThe column selected is already full, please select another one\n");
 	  column_full = 0;
 	  choix_joueur = 0;
 	}
