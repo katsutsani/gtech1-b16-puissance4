@@ -30,31 +30,30 @@ char **tab_malloc() {
 
 // INITIALISATION
 int init(){
-  for (c=0;c<NBC;c++){
-    printf("_  ");
-  }
-  printf("\n");
-  for(l=0;l<NBL;l++) {
-    for(c=0;c<NBC;c++)   {
-      tab[l][c] = '.';
-      printf("%c  ",tab[l][c]);
-    }
-    printf("\n");
-  }
-  for (c=0;c<NBC;c++){
-    printf("_  ");
-  }
-  printf("\n\n");
-  for(c=0;c<NBC;c++){
-    printf ("%02d ",(c+1));
-  }
-  printf("\n");
-  return 0;
+ for (c=0;c<NBC;c++){
+   printf("_  ");
+ }
+ printf("\n");
+ for(l=0;l<NBL;l++) {
+   for(c=0;c<NBC;c++)   {
+     tab[l][c] = '.';
+     printf("%c  ",tab[l][c]);
+   }
+   printf("\n");
+ }
+ for (c=0;c<NBC;c++){
+   printf("_  ");
+ }
+ printf("\n\n");
+ for(c=0;c<NBC;c++){
+   printf ("%02d ",(c+1));
+ }
+ printf("\n");
+ return 0;
 }
 
 int table(void) //Affichage du plateau
 {
-  if(NBC>10){
     for (c=0;c<NBC;c++){
       printf("_  ");
     }
@@ -83,37 +82,6 @@ int table(void) //Affichage du plateau
       printf("%02d ",(c+1));
     }
     printf("\n");
-  }
-  else{
-    for (c=0;c<NBC;c++){
-      printf("_  ");
-    }
-    printf("\n");
-    for(l=0;l<NBL;l++)
-      {
-	for(c=0;c<NBC;c++)
-	  {
-	    if(tab[l][c] == 'x'){
-	      printf("%s%c ",KRED, tab[l][c]);
-	    }
-	    else if(tab[l][c] == 'o'){
-	      printf("%s%c ",KYEL,tab[l][c]);
-	    }
-	    else if(tab[l][c] == '.'){
-	      printf("%s%c ",KNRM,tab[l][c]);
-	    }
-	  }
-	printf("\n");
-      }
-    for (c=0;c<NBC;c++){
-      printf("%s_ ",KNRM);
-    }
-    printf("\n\n");
-
-    for(c=0;c<NBC;c++){
-      printf("%02d \n",(c+1));
-    }
-  }
 }
 
 void change_table(int colonne) //changer les tableau pour entrer le token
